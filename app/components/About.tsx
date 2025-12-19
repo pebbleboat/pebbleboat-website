@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
+
 const processSteps = [
   {
     number: "01",
@@ -39,6 +41,41 @@ const processSteps = [
 ];
 
 export default function About() {
+  const [visibleSteps, setVisibleSteps] = useState<Set<number>>(new Set());
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    // Small delay to ensure refs are set
+    const timeoutId = setTimeout(() => {
+      stepRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  setVisibleSteps((prev) => new Set([...prev, index]));
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: "0px 0px -100px 0px",
+            }
+          );
+          observer.observe(ref);
+          observers.push(observer);
+        }
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
   return (
     <section id="about" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -106,12 +143,24 @@ export default function About() {
             <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 rounded-full animate-pulse opacity-20" />
 
             <div className="space-y-8 lg:space-y-12">
-              {processSteps.map((step, index) => (
+              {processSteps.map((step, index) => {
+                const isVisible = visibleSteps.has(index);
+                return (
                 <div
                   key={step.number}
+                  ref={(el) => {
+                    stepRefs.current[index] = el;
+                  }}
                   className={`relative group flex flex-col lg:flex-row items-center ${
                     index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  } transition-all duration-1000 ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-100 translate-y-0 scale-100"
                   }`}
+                  style={{
+                    transitionDelay: isVisible ? `${index * 150}ms` : "0ms",
+                  }}
                 >
                   {/* Left/Right Content Card */}
                   <div className={`lg:w-[45%] mb-6 lg:mb-0 ${index % 2 === 0 ? "lg:pr-6" : "lg:pl-6"}`}>
@@ -119,10 +168,23 @@ export default function About() {
                       {/* Glow effect on hover */}
                       <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
                       
-                      <div className="relative bg-white p-6 lg:p-7 rounded-3xl border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                      <div className={`relative bg-white p-6 lg:p-7 rounded-3xl border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                        isVisible
+                          ? index % 2 === 0
+                            ? "animate-slide-in-left"
+                            : "animate-slide-in-right"
+                          : index % 2 === 0
+                            ? "translate-x-0"
+                            : "translate-x-0"
+                      }`}>
                         {/* Step Header */}
                         <div className="flex items-center gap-4 mb-5">
-                          <div className="w-14 h-14 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-2xl md:text-3xl shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 flex-shrink-0">
+                          <div className={`w-14 h-14 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-2xl md:text-3xl shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 flex-shrink-0 ${
+                            isVisible ? "animate-bounce-in" : "opacity-100 scale-100"
+                          }`}
+                          style={{
+                            animationDelay: isVisible ? `${index * 150 + 200}ms` : "0ms",
+                          }}>
                             {step.icon}
                           </div>
                           <div className="flex-1 min-w-0">
@@ -157,12 +219,23 @@ export default function About() {
 
                   {/* Center Timeline Node - Desktop */}
                   <div className="hidden lg:flex lg:w-[10%] items-center justify-center relative z-10">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-xl border-4 border-white transform group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300">
+                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-xl border-4 border-white transform group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 ${
+                      isVisible ? "animate-scale-in" : "opacity-100 scale-100"
+                    }`}
+                    style={{
+                      animationDelay: isVisible ? `${index * 150 + 300}ms` : "0ms",
+                    }}>
                       <span className="text-xl font-bold text-white">{step.number}</span>
                     </div>
                     {/* Simple connecting line to next step */}
                     {index < processSteps.length - 1 && (
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full" />
+                      <div className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full ${
+                        isVisible ? "animate-line-grow" : "h-12 opacity-100"
+                      }`}
+                      style={{
+                        animationDelay: isVisible ? `${index * 150 + 500}ms` : "0ms",
+                        transition: "height 0.6s ease-out",
+                      }} />
                     )}
                   </div>
 
@@ -173,7 +246,16 @@ export default function About() {
                         index % 2 === 0 
                           ? "from-blue-50 to-purple-50" 
                           : "from-purple-50 to-blue-50"
-                      } border border-blue-100/50 opacity-60 group-hover:opacity-80 transition-opacity duration-300 relative overflow-hidden`}>
+                      } border border-blue-100/50 opacity-60 group-hover:opacity-80 transition-opacity duration-300 relative overflow-hidden ${
+                        isVisible
+                          ? index % 2 === 0
+                            ? "animate-slide-in-right"
+                            : "animate-slide-in-left"
+                          : "translate-x-0 opacity-60"
+                      }`}
+                      style={{
+                        animationDelay: isVisible ? `${index * 150 + 100}ms` : "0ms",
+                      }}>
                         {/* Decorative pattern */}
                         <div className="absolute inset-0 opacity-20">
                           <div className={`absolute ${index % 2 === 0 ? "right-4 top-4" : "left-4 top-4"} w-16 h-16 rounded-full bg-blue-400 blur-2xl`} />
@@ -197,13 +279,14 @@ export default function About() {
                     )}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           {/* Bottom CTA */}
           <div className="mt-12 lg:mt-16 text-center">
-            <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 p-6 lg:p-8 rounded-3xl shadow-xl max-w-2xl">
+            <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 p-6 lg:p-8 rounded-3xl shadow-xl max-w-2xl animate-fade-in-up">
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
                 Ready to Start Your Project?
               </h3>
