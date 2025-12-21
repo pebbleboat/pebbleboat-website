@@ -35,6 +35,218 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Minimalist Modern Scrollbar Design */
+/* Hide default scrollbar completely */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Scroll progress indicator */
+html {
+  --scroll-progress: 0%;
+  --scroll-position: 0%;
+  --scroll-position-right: 100%;
+}
+
+/* Rail Container - Minimalist thin line */
+.scrollbar-container {
+  position: fixed;
+  top: 0;
+  width: 1px;
+  height: 100vh;
+  z-index: 10000;
+  pointer-events: none;
+  background: rgba(132, 167, 177, 0.2);
+}
+
+/* Left side scrollbar */
+.scrollbar-container.scrollbar-left {
+  left: 0;
+}
+
+/* Right side scrollbar */
+.scrollbar-container.scrollbar-right {
+  right: 0;
+}
+
+/* Minimalist floating indicator - diamond shape */
+.scrollbar-indicator {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #84a7b1;
+  transform: translateY(-50%) rotate(45deg);
+  transition: none;
+  box-shadow: 
+    0 0 15px rgba(132, 167, 177, 0.9),
+    0 0 30px rgba(132, 167, 177, 0.6),
+    0 0 45px rgba(132, 167, 177, 0.3);
+  z-index: 10001;
+  animation: indicatorFloat 3s ease-in-out infinite;
+}
+
+/* Left side indicator position */
+.scrollbar-container.scrollbar-left .scrollbar-indicator {
+  left: -3.5px;
+}
+
+/* Right side indicator position - moves in opposite direction */
+.scrollbar-container.scrollbar-right .scrollbar-indicator {
+  right: -3.5px;
+}
+
+@keyframes indicatorFloat {
+  0%, 100% {
+    transform: translateY(-50%) rotate(45deg) scale(1);
+    box-shadow: 
+      0 0 15px rgba(132, 167, 177, 0.9),
+      0 0 30px rgba(132, 167, 177, 0.6),
+      0 0 45px rgba(132, 167, 177, 0.3);
+  }
+  50% {
+    transform: translateY(-50%) rotate(45deg) scale(1.2);
+    box-shadow: 
+      0 0 20px rgba(132, 167, 177, 1),
+      0 0 40px rgba(132, 167, 177, 0.8),
+      0 0 60px rgba(132, 167, 177, 0.5);
+  }
+}
+
+/* Minimalist progress line - thin glowing line */
+.scrollbar-progress-line {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: var(--scroll-progress);
+  background: #84a7b1;
+  box-shadow: 
+    0 0 8px rgba(132, 167, 177, 0.8),
+    0 0 16px rgba(132, 167, 177, 0.5),
+    0 0 24px rgba(132, 167, 177, 0.3);
+  transition: height 0.05s linear;
+  z-index: 10000;
+}
+
+/* Left side progress line */
+.scrollbar-container.scrollbar-left .scrollbar-progress-line {
+  left: 0;
+}
+
+/* Right side progress line - fills from bottom (inverted) */
+.scrollbar-container.scrollbar-right .scrollbar-progress-line {
+  right: 0;
+  top: auto;
+  bottom: 0;
+  background: #84a7b1;
+  box-shadow: 
+    0 0 8px rgba(132, 167, 177, 0.8),
+    0 0 16px rgba(132, 167, 177, 0.5),
+    0 0 24px rgba(132, 167, 177, 0.3);
+}
+
+/* Minimalist trail - subtle glow */
+.scrollbar-trail {
+  position: absolute;
+  width: 3px;
+  height: 40px;
+  background: rgba(132, 167, 177, 0.4);
+  transform: translateY(-50%);
+  transition: none;
+  pointer-events: none;
+  z-index: 9999;
+  filter: blur(1.5px);
+  box-shadow: 0 0 10px rgba(132, 167, 177, 0.6);
+  border-radius: 2px;
+}
+
+/* Left side trail */
+.scrollbar-container.scrollbar-left .scrollbar-trail {
+  left: -1px;
+}
+
+/* Right side trail - moves in opposite direction */
+.scrollbar-container.scrollbar-right .scrollbar-trail {
+  right: -1px;
+}
+
+/* Minimalist percentage indicator */
+.scrollbar-percentage {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(132, 167, 177, 0.7);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  z-index: 10001;
+  pointer-events: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.scrollbar-percentage:hover {
+  opacity: 1;
+  color: #84a7b1;
+}
+
+/* Sparkle particles */
+.scrollbar-sparkle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(132, 167, 177, 0.9) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  box-shadow: 
+    0 0 6px rgba(132, 167, 177, 1),
+    0 0 12px rgba(132, 167, 177, 0.8),
+    0 0 18px rgba(132, 167, 177, 0.5);
+  animation: sparkleSpread 1.2s ease-out forwards;
+  animation-delay: var(--sparkle-delay, 0s);
+  transform-origin: center;
+}
+
+@keyframes sparkleSpread {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: 
+      translate(
+        calc(var(--sparkle-translate-x, 0px) * 0.5),
+        calc(var(--sparkle-translate-y, 0px) * 0.5)
+      )
+      scale(1.3)
+      rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: 
+      translate(
+        var(--sparkle-translate-x, 0px),
+        var(--sparkle-translate-y, 0px)
+      )
+      scale(0.2)
+      rotate(360deg);
+  }
+}
+
 /* Animations */
 @keyframes fade-in {
   from {

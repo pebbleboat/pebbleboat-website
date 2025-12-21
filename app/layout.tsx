@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import WhatsAppWidget from "./components/WhatsAppWidget";
+import CustomScrollbar from "./components/CustomScrollbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -125,6 +127,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <WhatsAppWidget />
+        <CustomScrollbar />
       </body>
     </html>
   );
