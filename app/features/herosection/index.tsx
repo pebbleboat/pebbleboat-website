@@ -146,7 +146,7 @@ export default function Hero() {
                 }}
                 className="px-6 py-3 border-2 border-white/20 text-white rounded-lg font-semibold text-sm bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 hover:shadow-md hover:shadow-white/10 transition-all duration-300"
               >
-                See Our Work
+                Our Services
               </button>
             </div>
           </div>

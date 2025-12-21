@@ -49,7 +49,7 @@ export default function Contact() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent leading-14">
             Let's Build Something Amazing
           </h2>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
@@ -236,17 +236,17 @@ export default function Contact() {
             <p className="text-white/80 mb-4">Or reach us directly:</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:hello@pebbleboat.com"
+                href="mailto:contact@pebbleboat.com"
                 className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105 inline-block"
               >
-                📧 hello@pebbleboat.com
+                📧 contact@pebbleboat.com
               </a>
               <span className="hidden sm:inline text-white/40">•</span>
               <a
-                href="tel:+1234567890"
+                href="tel:+917376190196"
                 className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105 inline-block"
               >
-                📞 +1 (234) 567-890
+                📞 +91 7376190196
               </a>
             </div>
           </div>

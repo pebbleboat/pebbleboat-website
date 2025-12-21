@@ -82,7 +82,7 @@ const Wheel = () => {
             Feels like a good fit?
           </div>
           <p className="md:text-lg text-sm text-white/50">
-            Let&apos;s kick some ass together
+            Let&apos;s kick some as* together
           </p>
           <button 
             onClick={() => {
