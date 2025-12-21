@@ -42,7 +42,7 @@ export default function CustomScrollbar() {
           : 0;
         const clampedPosition = Math.min(100, Math.max(0, positionPercent));
         
-        // Calculate inverted position for right side (opposite direction)
+        // Calculate inverted position for left side (opposite direction)
         const invertedPosition = 100 - clampedPosition;
         
         // Detect scroll direction and create sparkles
@@ -52,16 +52,16 @@ export default function CustomScrollbar() {
         
         if (isScrolling && Math.random() > 0.7) {
           // Create sparkles from both sides
-          const leftY = (clampedPosition / 100) * window.innerHeight;
-          const rightY = (invertedPosition / 100) * window.innerHeight;
+          const leftY = (invertedPosition / 100) * window.innerHeight;
+          const rightY = (clampedPosition / 100) * window.innerHeight;
           
           // Create 2-4 sparkles per side
           const sparkleCount = Math.floor(Math.random() * 3) + 2;
           
           for (let i = 0; i < sparkleCount; i++) {
-            // Left side sparkles
+            // Left side sparkles - increased spread distance
             const leftAngle = (Math.random() * Math.PI * 2);
-            const leftDistance = 30 + Math.random() * 50;
+            const leftDistance = 100 + Math.random() * 200;
             const leftX = Math.cos(leftAngle) * leftDistance;
             const leftYOffset = Math.sin(leftAngle) * leftDistance;
             
@@ -78,9 +78,9 @@ export default function CustomScrollbar() {
               },
             ]);
             
-            // Right side sparkles
+            // Right side sparkles - increased spread distance
             const rightAngle = (Math.random() * Math.PI * 2);
-            const rightDistance = 30 + Math.random() * 50;
+            const rightDistance = 100 + Math.random() * 200;
             const rightX = Math.cos(rightAngle) * rightDistance;
             const rightYOffset = Math.sin(rightAngle) * rightDistance;
             
@@ -102,21 +102,25 @@ export default function CustomScrollbar() {
         setScrollProgress(clampedProgress);
         
         // Directly update DOM elements for instant response
+        // Left side now moves in opposite direction
         if (leftIndicatorRef.current) {
-          leftIndicatorRef.current.style.top = `${clampedPosition}%`;
+          leftIndicatorRef.current.style.top = `${invertedPosition}%`;
         }
         if (leftTrailRef.current) {
-          leftTrailRef.current.style.top = `${clampedPosition}%`;
+          leftTrailRef.current.style.top = `${invertedPosition}%`;
         }
+        // Right side now moves in normal direction
         if (rightIndicatorRef.current) {
-          rightIndicatorRef.current.style.top = `${invertedPosition}%`;
+          rightIndicatorRef.current.style.top = `${clampedPosition}%`;
         }
         if (rightTrailRef.current) {
-          rightTrailRef.current.style.top = `${invertedPosition}%`;
+          rightTrailRef.current.style.top = `${clampedPosition}%`;
         }
+        // Left progress line fills from bottom (inverted)
         if (progressLineLeftRef.current) {
           progressLineLeftRef.current.style.height = `${clampedProgress}%`;
         }
+        // Right progress line fills from top (normal)
         if (progressLineRightRef.current) {
           progressLineRightRef.current.style.height = `${clampedProgress}%`;
         }
