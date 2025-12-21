@@ -46,15 +46,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-black text-white/80">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-              StartupCo
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent mb-4">
+              Pebbleboat
             </h3>
-            <p className="text-gray-400 mb-4 max-w-md">
+            <p className="text-white/70 mb-4 max-w-md">
               Transforming ideas into digital reality. We build scalable
               products that drive business growth.
             </p>
@@ -63,7 +63,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-white/70 hover:text-[#84a7b1] transition-colors"
                   aria-label={social.name}
                 >
                   {renderIcon(social.iconType)}
@@ -80,7 +80,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-white/70 hover:text-[#84a7b1] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -97,7 +97,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-white/70 hover:text-[#84a7b1] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -107,20 +107,20 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © {currentYear} StartupCo. All rights reserved.
+        <div className="border-t border-[#1a1a1a] pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-white/70 text-sm">
+            © {currentYear} Pebbleboat. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a
               href="#"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
+              className="text-white/70 hover:text-[#84a7b1] text-sm transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
+              className="text-white/70 hover:text-[#84a7b1] text-sm transition-colors"
             >
               Terms of Service
             </a>
