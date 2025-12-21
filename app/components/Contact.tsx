@@ -41,25 +41,25 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 text-white">
+    <section id="contact" className="py-24 bg-black text-white">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
             Let's Build Something Amazing
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl text-white/80 max-w-2xl mx-auto">
             Ready to transform your idea into reality? Get in touch and let's
             discuss your project.
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/20">
+        <div className="bg-[#1a1a1a]/80 backdrop-blur-md rounded-2xl p-8 md:p-12 border-2 border-[#2a2a2a] hover:border-[#84a7b1]/50 transition-all duration-300">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2 text-blue-100"
+                  className="block text-sm font-medium mb-2 text-white/90"
                 >
                   Your Name *
                 </label>
@@ -70,14 +70,14 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a]/70 border-2 border-[#404040] text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:border-[#84a7b1] transition-all"
                   placeholder="John Doe"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium mb-2 text-blue-100"
+                  className="block text-sm font-medium mb-2 text-white/90"
                 >
                   Email Address *
                 </label>
@@ -88,7 +88,7 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a]/70 border-2 border-[#404040] text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:border-[#84a7b1] transition-all"
                   placeholder="john@example.com"
                 />
               </div>
@@ -97,7 +97,7 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="company"
-                className="block text-sm font-medium mb-2 text-blue-100"
+                className="block text-sm font-medium mb-2 text-white/90"
               >
                 Company Name
               </label>
@@ -107,7 +107,7 @@ export default function Contact() {
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a]/70 border-2 border-[#404040] text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:border-[#84a7b1] transition-all"
                 placeholder="Your Company"
               />
             </div>
@@ -115,7 +115,7 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium mb-2 text-blue-100"
+                className="block text-sm font-medium mb-2 text-white/90"
               >
                 Project Details *
               </label>
@@ -126,7 +126,7 @@ export default function Contact() {
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent resize-none"
+                className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a]/70 border-2 border-[#404040] text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:border-[#84a7b1] transition-all resize-none"
                 placeholder="Tell us about your project, timeline, and goals..."
               />
             </div>
@@ -146,25 +146,25 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#84a7b1] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
 
-          <div className="mt-8 pt-8 border-t border-white/20 text-center">
-            <p className="text-blue-100 mb-4">Or reach us directly:</p>
+          <div className="mt-8 pt-8 border-t border-[#2a2a2a] text-center">
+            <p className="text-white/80 mb-4">Or reach us directly:</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:hello@startupco.com"
-                className="text-white hover:text-blue-200 transition-colors"
+                href="mailto:hello@pebbleboat.com"
+                className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium"
               >
-                📧 hello@startupco.com
+                📧 hello@pebbleboat.com
               </a>
-              <span className="hidden sm:inline text-white/50">•</span>
+              <span className="hidden sm:inline text-white/40">•</span>
               <a
                 href="tel:+1234567890"
-                className="text-white hover:text-blue-200 transition-colors"
+                className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium"
               >
                 📞 +1 (234) 567-890
               </a>

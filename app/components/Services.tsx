@@ -69,13 +69,13 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
             Our Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-white/80 max-w-2xl mx-auto">
             Comprehensive solutions to bring your vision to life
           </p>
         </div>
@@ -84,26 +84,26 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-[#1a1a1a] to-black p-8 rounded-2xl border-2 border-[#2a2a2a] hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-300 hover:-translate-y-2"
             >
               <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
                 {service.icon}
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900">
+              <h3 className="text-2xl font-bold mb-3 text-white">
                 {service.title}
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-white/80 mb-6 leading-relaxed">
                 {service.desc}
               </p>
               <ul className="space-y-2">
                 {service.features.map((feature) => (
-                  <li key={feature} className="flex items-center text-gray-700">
+                  <li key={feature} className="flex items-center text-white/90">
                     <svg
-                      className="w-5 h-5 text-blue-600 mr-2"
+                      className="w-5 h-5 text-[#84a7b1] mr-2 flex-shrink-0"
                       fill="none"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >

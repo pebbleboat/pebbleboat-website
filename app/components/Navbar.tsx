@@ -26,7 +26,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isMobileMenuOpen
-          ? "bg-white/95 backdrop-blur-md shadow-md"
+          ? "bg-black/95 backdrop-blur-md shadow-md border-b border-[#1a1a1a]"
           : "bg-transparent"
       }`}
     >
@@ -34,43 +34,50 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 lg:h-20 min-h-[4rem]">
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            StartupCo
+            <img
+              src="/images/logo.png"
+              alt="Pebbleboat"
+              className="h-10 lg:h-12 w-auto"
+            />
+            <span className="text-xl lg:text-2xl font-bold text-white">
+              Pebbleboat
+            </span>
           </button>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("services")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection("tech")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105"
             >
               Tech Stack
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
+              className="bg-[#84a7b1] text-white px-6 py-2 rounded-full hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-105 transition-all font-medium"
             >
               Get Started
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 text-gray-700 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden flex items-center justify-center w-10 h-10 text-white/90 hover:text-[#84a7b1] transition-colors focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:ring-offset-2 focus:ring-offset-black rounded-lg"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
           >
@@ -99,28 +106,28 @@ export default function Navbar() {
             isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="pb-4 pt-2 space-y-2 bg-white/98 backdrop-blur-sm border-t border-gray-100 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+          <div className="pb-4 pt-2 space-y-2 bg-black/98 backdrop-blur-sm border-t border-[#1a1a1a] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
             <button
               onClick={() => scrollToSection("services")}
-              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors py-2.5 px-2 rounded-lg hover:bg-gray-50 font-medium"
+              className="block w-full text-left text-white/90 hover:text-[#84a7b1] transition-colors py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors py-2.5 px-2 rounded-lg hover:bg-gray-50 font-medium"
+              className="block w-full text-left text-white/90 hover:text-[#84a7b1] transition-colors py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection("tech")}
-              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors py-2.5 px-2 rounded-lg hover:bg-gray-50 font-medium"
+              className="block w-full text-left text-white/90 hover:text-[#84a7b1] transition-colors py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium"
             >
               Tech Stack
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full text-center font-medium hover:shadow-lg transition-all mt-2"
+              className="block w-full bg-[#84a7b1] text-white px-6 py-3 rounded-full text-center font-medium hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 transition-all mt-2"
             >
               Get Started
             </button>
