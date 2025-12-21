@@ -41,15 +41,15 @@ const Wheel = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="bg-black lg:py-40 sm:py-20 min-[450px]:py-10 overflow-hidden"
     >
-      <div className={`wheelBg relative md:h-screen h-[70vh] lg:scale-100 scale-[1.5] overflow-hidden w-full flex justify-center items-center transition-all duration-1000 ${
-        isVisible
-          ? "opacity-100 scale-100"
-          : "opacity-0 scale-95"
-      }`}>
+      <div
+        className={`wheelBg relative md:h-screen h-[70vh] lg:scale-100 scale-[1.5] overflow-hidden w-full flex justify-center items-center transition-all duration-1000 ${
+          isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
         <div
           ref={(el) => {
             circleRefs.current[0] = el;
@@ -68,11 +68,9 @@ const Wheel = () => {
           }}
           className="bg-[url(/images/innerWheel.png)] bg-no-repeat bg-contain bg-center h-[47vw] w-full aspect-square left-0 absolute"
         />
-        <div 
+        <div
           className={`text-center md:max-w-[250px] max-w-[150px] md:space-y-4 space-y-2 lg:scale-100 scale-50 z-10 transition-all duration-1000 ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
           style={{
             transitionDelay: isVisible ? "300ms" : "0ms",
@@ -84,14 +82,14 @@ const Wheel = () => {
           <p className="md:text-lg text-sm text-white/50">
             Let&apos;s kick some as* together
           </p>
-          <button 
+          <button
             onClick={() => {
               const element = document.getElementById("contact");
               if (element) {
                 element.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className="block mx-auto bg-[#84a7b1] text-white px-6 py-3 rounded-full text-center font-medium hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-105 transition-all duration-300 mt-2"
+            className="block mx-auto bg-[#84a7b1] text-white md:px-6 px-3 py-[6px] text-sm md:text-base md:py-3 rounded-full text-center font-medium hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-105 transition-all duration-300 mt-2 cursor-pointer"
           >
             Get In Touch
           </button>

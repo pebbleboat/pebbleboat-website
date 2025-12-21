@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 lg:h-20 min-h-[4rem]">
           <button
             onClick={() => scrollToSection("hero")}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer"
           >
             <img
               src="/images/logo.png"
@@ -62,7 +62,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-white/90 hover:text-[#84a7b1] transition-all duration-300 font-medium hover:scale-105 ${
+                className={`text-white/90 hover:text-[#84a7b1] transition-all duration-300 font-medium hover:scale-105 cursor-pointer ${
                   isMounted
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 -translate-y-2"
@@ -76,7 +76,7 @@ export default function Navbar() {
             ))}
             <button
               onClick={() => scrollToSection("contact")}
-              className={`bg-[#84a7b1] text-white px-6 py-2 rounded-full hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-105 transition-all duration-300 font-medium ${
+              className={`bg-[#84a7b1] text-white px-6 py-2 rounded-full hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-105 transition-all duration-300 font-medium cursor-pointer ${
                 isMounted
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-2"
@@ -92,7 +92,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden flex items-center justify-center w-10 h-10 text-white/90 hover:text-[#84a7b1] transition-colors focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:ring-offset-2 focus:ring-offset-black rounded-lg"
+              className="md:hidden flex items-center justify-center w-10 h-10 text-white/90 hover:text-[#84a7b1] transition-colors focus:outline-none focus:ring-2 focus:ring-[#84a7b1] focus:ring-offset-2 focus:ring-offset-black rounded-lg cursor-pointer"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
           >
@@ -130,7 +130,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left text-white/90 hover:text-[#84a7b1] transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2 ${
+                className={`block w-full text-left text-white/90 hover:text-[#84a7b1] transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2 cursor-pointer ${
                   isMobileMenuOpen
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 -translate-x-4"
@@ -144,7 +144,7 @@ export default function Navbar() {
             ))}
             <button
               onClick={() => scrollToSection("contact")}
-              className={`block w-full bg-[#84a7b1] text-white px-6 py-3 rounded-full text-center font-medium hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 transition-all duration-300 mt-2 hover:scale-105 ${
+              className={`block w-full bg-[#84a7b1] text-white px-6 py-3 rounded-full text-center font-medium hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 transition-all duration-300 mt-2 hover:scale-105 cursor-pointer ${
                 isMobileMenuOpen
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"

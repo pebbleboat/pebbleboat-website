@@ -116,7 +116,7 @@ export default function Hero() {
             >
               <button
                 onClick={scrollToContact}
-                className="group relative px-6 py-3 bg-[#84a7b1] text-white rounded-lg font-semibold text-sm overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#84a7b1]/30"
+                className="group relative px-6 py-3 bg-[#84a7b1] text-white rounded-lg font-semibold text-sm overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#84a7b1]/30 cursor-pointer"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Get Started
@@ -144,7 +144,7 @@ export default function Hero() {
                     element.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
-                className="px-6 py-3 border-2 border-white/20 text-white rounded-lg font-semibold text-sm bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 hover:shadow-md hover:shadow-white/10 transition-all duration-300"
+                className="px-6 py-3 border-2 border-white/20 text-white rounded-lg font-semibold text-sm bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 hover:shadow-md hover:shadow-white/10 transition-all duration-300 cursor-pointer"
               >
                 Our Services
               </button>
