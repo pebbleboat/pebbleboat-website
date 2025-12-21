@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+
 const services = [
   {
     icon: "🚀",
@@ -68,10 +72,62 @@ const services = [
 ];
 
 export default function Services() {
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Header animation
+    if (headerRef.current) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsHeaderVisible(true);
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(headerRef.current);
+    }
+
+    // Items animation
+    const observers: IntersectionObserver[] = [];
+    itemRefs.current.forEach((ref, index) => {
+      if (ref) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setVisibleItems((prev) => new Set([...prev, index]));
+            }
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+        );
+        observer.observe(ref);
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
   return (
-    <section id="services" className="py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="services" className="py-24 bg-black relative overflow-hidden">
+      {/* Gradient Patches */}
+      <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-[#84a7b1]/8 rounded-full blur-[100px]" />
+      <div className="absolute bottom-1/4 -left-1/4 w-[550px] h-[550px] bg-[#84a7b1]/6 rounded-full blur-[90px]" />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isHeaderVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-8"
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
             Our Services
           </h2>
@@ -81,40 +137,59 @@ export default function Services() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="group bg-gradient-to-br from-[#1a1a1a] to-black p-8 rounded-2xl border-2 border-[#2a2a2a] hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-300 hover:-translate-y-2"
-            >
-              <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
-              </div>
-              <h3 className="text-2xl font-bold mb-3 text-white">
-                {service.title}
-              </h3>
-              <p className="text-white/80 mb-6 leading-relaxed">
-                {service.desc}
-              </p>
-              <ul className="space-y-2">
-                {service.features.map((feature) => (
-                  <li key={feature} className="flex items-center text-white/90">
-                    <svg
-                      className="w-5 h-5 text-[#84a7b1] mr-2 flex-shrink-0"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2.5"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+          {services.map((service, index) => {
+            const isVisible = visibleItems.has(index);
+            return (
+              <div
+                key={service.title}
+                ref={(el) => {
+                  itemRefs.current[index] = el;
+                }}
+                className={`group bg-gradient-to-br from-[#1a1a1a] to-black p-8 rounded-2xl border-2 border-[#2a2a2a] hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-500 hover:-translate-y-2 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : "opacity-0 translate-y-10 scale-95"
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
+                }}
+              >
+                <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-[#84a7b1] transition-colors duration-300">
+                  {service.title}
+                </h3>
+                <p className="text-white/80 mb-6 leading-relaxed">
+                  {service.desc}
+                </p>
+                <ul className="space-y-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <li 
+                      key={feature} 
+                      className="flex items-center text-white/90 group-hover:text-white transition-colors duration-300"
+                      style={{
+                        animationDelay: isVisible ? `${index * 100 + featureIndex * 50}ms` : "0ms",
+                      }}
                     >
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                      <svg
+                        className="w-5 h-5 text-[#84a7b1] mr-2 flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.5"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
