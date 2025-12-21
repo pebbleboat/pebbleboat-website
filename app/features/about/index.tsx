@@ -360,7 +360,7 @@ export default function About() {
                     element.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
-                className="bg-white text-[#84a7b1] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-semibold hover:bg-[#84a7b1] hover:text-white hover:shadow-md hover:shadow-[#84a7b1]/20 transform hover:scale-105 transition-all duration-300 text-sm lg:text-base"
+                className="bg-white text-[#84a7b1] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-semibold hover:bg-[#84a7b1] hover:text-white hover:shadow-md hover:shadow-[#84a7b1]/20 transform hover:scale-105 transition-all duration-300 text-sm lg:text-base cursor-pointer"
               >
                 Get Started Today
               </button>
