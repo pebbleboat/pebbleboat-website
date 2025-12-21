@@ -140,6 +140,7 @@ export default function Footer() {
                 >
                   <a
                     href={link.href}
+                    target="_blank"
                     className="text-white/70 hover:text-[#84a7b1] transition-colors hover:translate-x-1 inline-block"
                   >
                     {link.name}
