@@ -1,83 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { SectionHeader, GradientBackground } from "../../shared";
 import { SvgCheckmark } from "../../utils/svgs";
-
-const services = [
-  {
-    icon: "🚀",
-    title: "MVP Development",
-    desc: "Launch your product faster with our end-to-end MVP development. We build scalable MVPs in 4–6 weeks, helping you validate your idea and get to market quickly.",
-    features: [
-      "Rapid prototyping",
-      "User-focused design",
-      "Scalable architecture",
-      "Post-launch support",
-    ],
-  },
-  {
-    icon: "💻",
-    title: "Full-Stack Web Applications",
-    desc: "Custom web applications built with modern technologies. From dashboards to e-commerce platforms, we create solutions that grow with your business.",
-    features: [
-      "Responsive design",
-      "Cloud deployment",
-      "API integration",
-      "Performance optimization",
-    ],
-  },
-  {
-    icon: "📱",
-    title: "Mobile App Development",
-    desc: "Native-feeling mobile apps for iOS and Android using React Native. One codebase, two platforms, seamless user experience.",
-    features: [
-      "Cross-platform",
-      "Native performance",
-      "App store deployment",
-      "Push notifications",
-    ],
-  },
-  {
-    icon: "🎨",
-    title: "UI/UX Design",
-    desc: "Beautiful, intuitive interfaces that users love. We combine design thinking with user research to create engaging experiences.",
-    features: [
-      "User research",
-      "Wireframing",
-      "Prototyping",
-      "Design systems",
-    ],
-  },
-  {
-    icon: "⚡",
-    title: "Cloud & DevOps",
-    desc: "Scalable infrastructure and deployment pipelines. We ensure your applications are fast, secure, and always available.",
-    features: [
-      "AWS/Azure/GCP",
-      "CI/CD pipelines",
-      "Monitoring & logging",
-      "Auto-scaling",
-    ],
-  },
-  {
-    icon: "🔧",
-    title: "Consulting & Strategy",
-    desc: "Expert guidance on technology decisions, architecture, and product strategy. Let us help you make the right choices.",
-    features: [
-      "Technical audits",
-      "Architecture reviews",
-      "Product strategy",
-      "Team mentoring",
-    ],
-  },
-];
+import { services } from "../../utils/data/services";
 
 export default function Services() {
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     // Header animation
@@ -136,12 +69,13 @@ export default function Services() {
           {services.map((service, index) => {
             const isVisible = visibleItems.has(index);
             return (
-              <div
+              <Link
                 key={service.title}
+                href={`/services/${service.slug}`}
                 ref={(el) => {
                   itemRefs.current[index] = el;
                 }}
-                className={`group bg-gradient-to-br from-[#1a1a1a] to-black p-8 rounded-2xl border-2 border-[#2a2a2a] hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-500 hover:-translate-y-2 ${
+                className={`group bg-gradient-to-br from-[#1a1a1a] to-black p-8 rounded-2xl border-2 border-[#2a2a2a] hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-500 hover:-translate-y-2 cursor-pointer block ${
                   isVisible
                     ? "opacity-100 translate-y-0 scale-100"
                     : "opacity-0 translate-y-10 scale-95"
@@ -162,18 +96,18 @@ export default function Services() {
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
                     <li 
-                      key={feature} 
+                      key={featureIndex} 
                       className="flex items-center text-white/90 group-hover:text-white transition-colors duration-300"
                       style={{
                         animationDelay: isVisible ? `${index * 100 + featureIndex * 50}ms` : "0ms",
                       }}
                     >
                       <SvgCheckmark />
-                      {feature}
+                      {feature.title}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Link>
             );
           })}
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Button, cn, useScrollToSection, Img } from "../shared";
 import { SvgMenuToggle } from "../utils/svgs";
 
@@ -8,6 +9,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
   const scrollToSection = useScrollToSection();
 
   useEffect(() => {
@@ -20,8 +23,13 @@ export default function Navbar() {
   }, []);
 
   const handleNavClick = (id: string) => {
-    scrollToSection(id);
     setIsMobileMenuOpen(false);
+
+    if (pathname !== "/") {
+      router.push(`/#${id}`);
+    } else {
+      scrollToSection(id);
+    }
   };
 
   return (

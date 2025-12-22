@@ -187,13 +187,13 @@ export default function Footer() {
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a
-              href="#"
+              href="/privacy-policy"
               className="text-white/70 hover:text-[#84a7b1] text-sm transition-colors hover:scale-105 inline-block"
             >
               Privacy Policy
             </a>
             <a
-              href="#"
+              href="/terms-of-service"
               className="text-white/70 hover:text-[#84a7b1] text-sm transition-colors hover:scale-105 inline-block"
             >
               Terms of Service
