@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { SectionHeader } from "../../shared";
 
 const technologies = [
   { name: "Next.js", category: "Frontend", color: "bg-black" },
@@ -77,20 +78,16 @@ export default function TechStack() {
   return (
     <section id="tech" className="py-24 bg-gradient-to-br from-black to-[#0a0a0a] relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div 
-          ref={headerRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isHeaderVisible 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 translate-y-8"
-          }`}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
-            Our Tech Stack
-          </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Modern technologies we use to build exceptional products
-          </p>
+        <div ref={headerRef}>
+          <SectionHeader
+            title="Our Tech Stack"
+            subtitle="Modern technologies we use to build exceptional products"
+            className={`mb-16 transition-all duration-1000 ${
+              isHeaderVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
+          />
         </div>
 
         {/* Tech Grid */}

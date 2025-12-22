@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { SectionHeader, GradientBackground } from "../../shared";
+import { SvgCheckmark } from "../../utils/svgs";
 
 const services = [
   {
@@ -115,25 +117,19 @@ export default function Services() {
 
   return (
     <section id="services" className="py-24 bg-black relative overflow-hidden">
-      {/* Gradient Patches */}
-      <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-[#84a7b1]/8 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 -left-1/4 w-[550px] h-[550px] bg-[#84a7b1]/6 rounded-full blur-[90px]" />
+      <GradientBackground variant="services" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div 
-          ref={headerRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isHeaderVisible 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 translate-y-8"
-          }`}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
-            Our Services
-          </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Comprehensive solutions to bring your vision to life
-          </p>
+        <div ref={headerRef}>
+          <SectionHeader
+            title="Our Services"
+            subtitle="Comprehensive solutions to bring your vision to life"
+            className={`mb-16 transition-all duration-1000 ${
+              isHeaderVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
+          />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -172,17 +168,7 @@ export default function Services() {
                         animationDelay: isVisible ? `${index * 100 + featureIndex * 50}ms` : "0ms",
                       }}
                     >
-                      <svg
-                        className="w-5 h-5 text-[#84a7b1] mr-2 flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M5 13l4 4L19 7" />
-                      </svg>
+                      <SvgCheckmark />
                       {feature}
                     </li>
                   ))}
