@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Button, useScrollToSection } from "../../shared";
 
 const Wheel = () => {
   const circleRefs = useRef<any[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -82,17 +84,15 @@ const Wheel = () => {
           <p className="md:text-lg text-sm text-white/50">
             Let&apos;s kick some as* together
           </p>
-          <button
-            onClick={() => {
-              const element = document.getElementById("contact");
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            className="block mx-auto bg-[#84a7b1] text-white md:px-6 px-3 py-[6px] text-sm md:text-base md:py-3 rounded-full text-center font-medium hover:bg-[#6d8a94] hover:shadow-lg hover:shadow-[#84a7b1]/30 hover:scale-105 transition-all duration-300 mt-2 cursor-pointer"
+          <Button
+            onClick={() => scrollToSection("contact")}
+            variant="primary"
+            size="md"
+            rounded="full"
+            className="block mx-auto mt-2"
           >
             Get In Touch
-          </button>
+          </Button>
         </div>
       </div>
     </section>

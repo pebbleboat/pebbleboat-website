@@ -2,10 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
+import { Button, GradientBackground, useScrollToSection } from "../../shared";
+import {
+  SvgArrowRightLong,
+  SvgScrollDown,
+  SvgDecorativeLines,
+} from "../../utils/svgs";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
   const [animationData, setAnimationData] = useState<any>(null);
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     setMounted(true);
@@ -15,13 +22,6 @@ export default function Hero() {
       .then((data) => setAnimationData(data))
       .catch((error) => console.error("Error loading animation:", error));
   }, []);
-
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <section
@@ -33,9 +33,7 @@ export default function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 bg-black">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-[#84a7b1]/6 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[700px] h-[700px] bg-[#84a7b1]/5 rounded-full blur-[140px]" />
+        <GradientBackground variant="hero" />
       </div>
 
       {/* Main Content Container */}
@@ -114,40 +112,26 @@ export default function Hero() {
               }`}
               style={{ transitionDelay: mounted ? "1200ms" : "0ms" }}
             >
-              <button
-                onClick={scrollToContact}
-                className="group relative px-6 py-3 bg-[#84a7b1] text-white rounded-lg font-semibold text-sm overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#84a7b1]/30 cursor-pointer"
+              <Button
+                onClick={() => scrollToSection("contact")}
+                variant="primary"
+                size="md"
+                className="group relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Get Started
-                  <svg
-                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
+                  <SvgArrowRightLong />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#6d8a94] to-[#84a7b1] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </button>
+              </Button>
 
-              <button
-                onClick={() => {
-                  const element = document.getElementById("services");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="px-6 py-3 border-2 border-white/20 text-white rounded-lg font-semibold text-sm bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 hover:shadow-md hover:shadow-white/10 transition-all duration-300 cursor-pointer"
+              <Button
+                onClick={() => scrollToSection("services")}
+                variant="outline"
+                size="md"
               >
                 Our Services
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -155,63 +139,7 @@ export default function Hero() {
           <div className="relative h-[500px] lg:h-[600px] xl:h-[700px] flex items-center justify-center">
             <div className="relative w-full h-full">
               {/* Decorative SVG Lines */}
-              <svg
-                className="absolute inset-0 w-full h-full opacity-40"
-                style={{ zIndex: 1 }}
-              >
-                <defs>
-                  <linearGradient
-                    id="lineGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#84a7b1" stopOpacity="0.5" />
-                    <stop offset="100%" stopColor="#84a7b1" stopOpacity="0.1" />
-                  </linearGradient>
-                </defs>
-                <line
-                  x1="10%"
-                  y1="20%"
-                  x2="30%"
-                  y2="40%"
-                  stroke="url(#lineGradient)"
-                  strokeWidth="2"
-                />
-                <line
-                  x1="70%"
-                  y1="30%"
-                  x2="85%"
-                  y2="50%"
-                  stroke="url(#lineGradient)"
-                  strokeWidth="2"
-                />
-                <line
-                  x1="50%"
-                  y1="60%"
-                  x2="70%"
-                  y2="75%"
-                  stroke="url(#lineGradient)"
-                  strokeWidth="2"
-                />
-                <line
-                  x1="25%"
-                  y1="50%"
-                  x2="45%"
-                  y2="60%"
-                  stroke="url(#lineGradient)"
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="75%"
-                  y1="70%"
-                  x2="90%"
-                  y2="80%"
-                  stroke="url(#lineGradient)"
-                  strokeWidth="1.5"
-                />
-              </svg>
+              <SvgDecorativeLines />
 
               {/* Floating dots with glow */}
               <div
@@ -295,17 +223,7 @@ export default function Hero() {
           <span className="text-[9px] text-white/30 uppercase tracking-wider font-medium">
             Scroll
           </span>
-          <svg
-            className="w-4 h-4 text-white/40"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+          <SvgScrollDown />
         </div>
       </div>
     </section>

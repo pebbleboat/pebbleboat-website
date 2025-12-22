@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { SectionHeader, Button, useScrollToSection } from "../../shared";
+import { SvgArrowRight } from "@/app/utils/svgs";
 
 const processSteps = [
   {
@@ -43,6 +45,7 @@ const processSteps = [
 export default function About() {
   const [visibleSteps, setVisibleSteps] = useState<Set<number>>(new Set());
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -81,14 +84,12 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* About Section */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
-            Why Choose Us?
-          </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8 lg:mb-12">
-            We're not just developers—we're your partners in building products
-            that make a difference. With a focus on quality, speed, and
-            collaboration, we help startups and businesses succeed.
-          </p>
+          <SectionHeader
+            title="Why Choose Us?"
+            subtitle="We're not just developers—we're your partners in building products that make a difference. With a focus on quality, speed, and collaboration, we help startups and businesses succeed."
+            className="mb-8 lg:mb-12"
+            subtitleClassName="max-w-3xl"
+          />
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <div className="p-5 lg:p-6 bg-gradient-to-br from-[#84a7b1]/15 to-[#1a1a1a] rounded-2xl border-2 border-[#84a7b1]/30 hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-300">
@@ -132,12 +133,10 @@ export default function About() {
                 How We Work
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent">
-              Our Process
-            </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              A proven methodology that ensures successful project delivery
-            </p>
+            <SectionHeader
+              title="Our Process"
+              subtitle="A proven methodology that ensures successful project delivery"
+            />
           </div>
 
           <div className="relative max-w-7xl mx-auto">
@@ -227,17 +226,7 @@ export default function About() {
                           {/* Decorative CTA */}
                           <div className="flex items-center gap-2 text-[#84a7b1] font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <span>Learn more</span>
-                            <svg
-                              className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-                              fill="none"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path d="M9 5l7 7-7 7" />
-                            </svg>
+                            <SvgArrowRight />
                           </div>
                         </div>
                       </div>
@@ -353,17 +342,14 @@ export default function About() {
               <p className="text-white/90 mb-5 lg:mb-6 text-base lg:text-lg">
                 Let's discuss how our process can help bring your vision to life
               </p>
-              <button
-                onClick={() => {
-                  const element = document.getElementById("contact");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="bg-white text-[#84a7b1] px-6 lg:px-8 py-2.5 lg:py-3 rounded-full font-semibold hover:bg-[#84a7b1] hover:text-white hover:shadow-md hover:shadow-[#84a7b1]/20 transform hover:scale-105 transition-all duration-300 text-sm lg:text-base cursor-pointer"
+              <Button
+                onClick={() => scrollToSection("contact")}
+                variant="secondary"
+                size="md"
+                rounded="full"
               >
                 Get Started Today
-              </button>
+              </Button>
             </div>
           </div>
         </div>

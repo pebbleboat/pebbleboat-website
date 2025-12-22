@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import WhatsAppWidget from "./components/WhatsAppWidget";
-import CustomScrollbar from "./components/CustomScrollbar";
+import WhatsAppWidget from "./shared/WhatsAppWidget";
+import CustomScrollbar from "./shared/CustomScrollbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -77,6 +77,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
   },
   icons: {
     icon: "/favicon.ico",
