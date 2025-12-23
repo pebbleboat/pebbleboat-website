@@ -4,7 +4,10 @@ import { getAllServiceSlugs } from "./utils/data/services";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pebbleboat.com";
+  // Force apex domain even if env accidentally includes www.
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace("//www.", "//") ||
+    "https://pebbleboat.com";
   const lastModified = new Date("2025-01-01");
 
   const servicePages = getAllServiceSlugs().map((slug) => ({
