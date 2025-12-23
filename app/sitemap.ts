@@ -1,13 +1,15 @@
 import { MetadataRoute } from "next";
 import { getAllServiceSlugs } from "./utils/data/services";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pebbleboat.com";
-  const currentDate = new Date();
+  const lastModified = new Date("2025-01-01");
 
   const servicePages = getAllServiceSlugs().map((slug) => ({
     url: `${baseUrl}/services/${slug}`,
-    lastModified: currentDate,
+    lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -15,23 +17,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "monthly",
-      priority: 1,
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/services`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/privacy-policy`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.4,
     },
     {
       url: `${baseUrl}/terms-of-service`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.4,
     },
     ...servicePages,
   ];
 }
-

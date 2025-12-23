@@ -9,6 +9,7 @@ import {
   GradientBackground,
   AnimatedSection,
 } from "../../shared";
+import Link from "next/link";
 
 export default function Contact() {
   const {
@@ -135,19 +136,19 @@ export default function Contact() {
           >
             <p className="text-white/80 mb-4">Or reach us directly:</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="mailto:contact@pebbleboat.com"
                 className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105 inline-block"
               >
                 📧 contact@pebbleboat.com
-              </a>
+              </Link>
               <span className="hidden sm:inline text-white/40">•</span>
-              <a
+              <Link
                 href="tel:+917376190196"
                 className="text-white/90 hover:text-[#84a7b1] transition-colors font-medium hover:scale-105 inline-block"
               >
                 📞 +91 7376190196
-              </a>
+              </Link>
             </div>
           </AnimatedSection>
         </AnimatedSection>
