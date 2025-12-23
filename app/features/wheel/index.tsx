@@ -56,19 +56,19 @@ const Wheel = () => {
           ref={(el) => {
             circleRefs.current[0] = el;
           }}
-          className="bg-[url(/images/blankOuterWheel.png)] bg-no-repeat bg-contain bg-center h-[100vw] w-full aspect-square left-0 absolute"
+          className="bg-[url(/images/blankOuterWheel.webp)] bg-no-repeat bg-contain bg-center h-[100vw] w-full aspect-square left-0 absolute"
         />
         <div
           ref={(el) => {
             circleRefs.current[1] = el;
           }}
-          className="bg-[url(/images/outerWheel.png)] bg-no-repeat bg-contain bg-center h-[69vw] w-full aspect-square left-0 absolute"
+          className="bg-[url(/images/outerWheel.webp)] bg-no-repeat bg-contain bg-center h-[69vw] w-full aspect-square left-0 absolute"
         />
         <div
           ref={(el) => {
             circleRefs.current[2] = el;
           }}
-          className="bg-[url(/images/innerWheel.png)] bg-no-repeat bg-contain bg-center h-[47vw] w-full aspect-square left-0 absolute"
+          className="bg-[url(/images/innerWheel.webp)] bg-no-repeat bg-contain bg-center h-[47vw] w-full aspect-square left-0 absolute"
         />
         <div
           className={`text-center md:max-w-[250px] max-w-[150px] md:space-y-4 space-y-2 lg:scale-100 scale-50 z-10 transition-all duration-1000 ${

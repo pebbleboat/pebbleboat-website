@@ -8,11 +8,12 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "https://pebbleboat.com"
   ),
   title: {
-    default: "Pebbleboat – We thrive to grow",
-    template: "%s | Pebbleboat",
+    default:
+      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
+    template: "%s | Pebbleboat – We thrive to grow",
   },
   description:
-    "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
+    "Web and mobile app development agency delivering MVPs, full-stack products, and scalable software with fast, design-first execution.",
   keywords: [
     "web development",
     "mobile app development",
@@ -27,12 +28,13 @@ export const metadata: Metadata = {
     "android development",
     "ios development",
     "react native development",
-    "software development",
     "saas development",
     "b2b development",
     "b2c development",
     "software testing",
     "CMS",
+    "app development agency",
+    "software agency",
   ],
   authors: [{ name: "Pebbleboat" }],
   creator: "Pebbleboat",
@@ -47,24 +49,26 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Pebbleboat",
-    title: "Pebbleboat – We thrive to grow",
+    title:
+      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
     description:
-      "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
+      "Web and mobile app development agency delivering MVPs, full-stack products, and scalable software with fast, design-first execution.",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logo.webp",
         width: 1200,
         height: 630,
-        alt: "Pebbleboat - We thrive to grow",
+        alt: "Pebbleboat - Web & Mobile App Development Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pebbleboat – We thrive to grow",
+    title:
+      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
     description:
-      "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
-    images: ["/images/logo.png"],
+      "Web and mobile app development agency delivering MVPs, full-stack products, and scalable software with fast, design-first execution.",
+    images: ["/images/logo.webp"],
     creator: "@pebbleboat",
   },
   robots: {
@@ -106,7 +110,7 @@ export default function RootLayout({
     description:
       "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more.",
     url: baseUrl,
-    logo: `${baseUrl}/images/logo.png`,
+    logo: `${baseUrl}/images/logo.webp`,
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
@@ -124,6 +128,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/hero.json"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="bg-black text-white antialiased">
         <script
           type="application/ld+json"

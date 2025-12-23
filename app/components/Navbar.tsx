@@ -49,7 +49,7 @@ export default function Navbar() {
             className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer"
           >
             <Img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Pebbleboat"
               width={120}
               height={48}

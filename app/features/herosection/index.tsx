@@ -1,7 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import Lottie from "lottie-react";
 import { Button, GradientBackground, useScrollToSection } from "../../shared";
 import {
   SvgArrowRightLong,
@@ -9,18 +9,29 @@ import {
   SvgDecorativeLines,
 } from "../../utils/svgs";
 
+const LottiePlayer = dynamic(() => import("lottie-react"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full rounded-2xl bg-white/5 animate-pulse" />
+  ),
+});
+
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
   const [animationData, setAnimationData] = useState<any>(null);
+  const [animationError, setAnimationError] = useState<string | null>(null);
   const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     setMounted(true);
-    // Load Lottie animation data
+    // Load Lottie animation data without blocking paint
     fetch("/hero.json")
       .then((response) => response.json())
       .then((data) => setAnimationData(data))
-      .catch((error) => console.error("Error loading animation:", error));
+      .catch((error) => {
+        console.error("Error loading animation:", error);
+        setAnimationError("Unable to load animation");
+      });
   }, []);
 
   return (
@@ -70,17 +81,17 @@ export default function Hero() {
                 }`}
                 style={{ transitionDelay: mounted ? "400ms" : "0ms" }}
               >
-                Transform Your Ideas Into
+                Web & Mobile App Development Agency
               </span>
               <span
-                className={`bg-gradient-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient block transition-all duration-1000 ${
+                className={`bg-linear-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient block transition-all duration-1000 ${
                   mounted
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
                 }`}
                 style={{ transitionDelay: mounted ? "600ms" : "0ms" }}
               >
-                Digital Reality
+                Turning Ideas Into Launch-Ready Products
               </span>
             </h1>
 
@@ -122,7 +133,7 @@ export default function Hero() {
                   Get Started
                   <SvgArrowRightLong />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6d8a94] to-[#84a7b1] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-r from-[#6d8a94] to-[#84a7b1] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Button>
 
               <Button
@@ -204,12 +215,22 @@ export default function Hero() {
               {/* Lottie Animation */}
               {animationData && (
                 <div className="relative z-10 w-full h-full">
-                  <Lottie
+                  <LottiePlayer
                     animationData={animationData}
                     className="w-full h-full"
                     loop={true}
                     autoplay={true}
                   />
+                </div>
+              )}
+              {!animationData && !animationError && (
+                <div className="relative z-10 w-full h-full rounded-2xl border border-white/5 bg-white/5 flex items-center justify-center text-white/50 text-sm">
+                  Loading experience...
+                </div>
+              )}
+              {animationError && (
+                <div className="relative z-10 w-full h-full rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-white/60 text-sm">
+                  Smooth animation unavailable right now
                 </div>
               )}
             </div>
