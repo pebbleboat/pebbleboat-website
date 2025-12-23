@@ -1,14 +1,5 @@
-import type { NextConfig } from "next";
-
-// Enforce a single canonical host (apex) to avoid duplicate content between www/non-www.
-// We normalize any provided URL to strip the www prefix so redirects always point to apex.
-const configuredSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://pebbleboat.com";
-const normalizedHost = new URL(configuredSiteUrl).host.replace(/^www\./, "");
-const primaryHost = normalizedHost; // always apex
-const alternativeHost = `www.${normalizedHost}`; // www version always redirected
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   async redirects() {
     return [
       {
@@ -16,14 +7,14 @@ const nextConfig: NextConfig = {
         has: [
           {
             type: "host",
-            value: alternativeHost,
+            value: "www.pebbleboat.com",
           },
         ],
-        destination: `https://${primaryHost}/:path*`,
-        permanent: true,
+        destination: "https://pebbleboat.com/:path*",
+        permanent: true, // 301 redirect
       },
     ];
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
