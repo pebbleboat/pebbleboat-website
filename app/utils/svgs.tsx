@@ -135,6 +135,26 @@ export const SvgTwitter = (props: React.SVGProps<SVGSVGElement>) => {
   );
 };
 
+export const SvgInstagram = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      className="w-5 h-5"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="3.5" />
+      <circle cx="17" cy="7" r="1.1" />
+    </svg>
+  );
+};
+
 export const SvgGitHub = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg

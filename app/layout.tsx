@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Pebbleboat",
   },
   description:
-    "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more. Fast delivery, results-driven approach, and transparent process.",
+    "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
   keywords: [
     "web development",
     "mobile app development",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Pebbleboat",
     title: "Pebbleboat – We thrive to grow",
     description:
-      "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more.",
+      "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
     images: [
       {
         url: "/images/logo.png",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pebbleboat – We thrive to grow",
     description:
-      "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more.",
+      "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
     images: ["/images/logo.png"],
     creator: "@pebbleboat",
   },

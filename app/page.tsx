@@ -12,11 +12,11 @@ import HashScrollHandler from "./components/HashScrollHandler";
 export const metadata: Metadata = {
   title: "Pebbleboat – We thrive to grow",
   description:
-    "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more. Fast delivery, results-driven approach, and transparent process.",
+    "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
   openGraph: {
     title: "Pebbleboat – We thrive to grow",
     description:
-      "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more.",
+      "Service-based startup building scalable products: MVPs, web and mobile apps, full-stack development with fast delivery and a transparent process.",
     url: "/",
   },
   alternates: {

@@ -72,6 +72,7 @@ export default function Services() {
               <Link
                 key={service.title}
                 href={`/services/${service.slug}`}
+                aria-label={service.title}
                 ref={(el) => {
                   itemRefs.current[index] = el;
                 }}
@@ -87,13 +88,13 @@ export default function Services() {
                 <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-[#84a7b1] transition-colors duration-300">
+                <p className="text-2xl font-bold mb-3 text-white group-hover:text-[#84a7b1] transition-colors duration-300">
                   {service.title}
-                </h3>
-                <p className="text-white/80 mb-6 leading-relaxed">
+                </p>
+                <p className="text-white/80 mb-6 leading-relaxed" aria-hidden="true">
                   {service.desc}
                 </p>
-                <ul className="space-y-2">
+                <ul className="space-y-2" aria-hidden="true">
                   {service.features.map((feature, featureIndex) => (
                     <li 
                       key={featureIndex} 

@@ -114,9 +114,9 @@ export default function TechStack() {
                 >
                   {tech.name.charAt(0)}
                 </div>
-                <h3 className="font-semibold text-white mb-1 group-hover:text-[#84a7b1] transition-colors duration-300">
+                <p className="font-semibold text-white mb-1 group-hover:text-[#84a7b1] transition-colors duration-300">
                   {tech.name}
-                </h3>
+                </p>
                 <p className="text-xs text-white/70">{tech.category}</p>
               </div>
             );
@@ -132,9 +132,9 @@ export default function TechStack() {
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h3 className="text-2xl font-bold mb-6 text-center text-white">
+          <p className="text-2xl font-bold mb-6 text-center text-white">
             What We Specialize In
-          </h3>
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { icon: "🎨", title: "Frontend Excellence", desc: "Modern React-based applications with beautiful UIs" },
@@ -155,7 +155,7 @@ export default function TechStack() {
                 <div className="text-4xl mb-3 transform hover:scale-110 hover:rotate-6 transition-all duration-300">
                   {item.icon}
                 </div>
-                <h4 className="font-semibold mb-2 text-white">{item.title}</h4>
+                <p className="font-semibold mb-2 text-white">{item.title}</p>
                 <p className="text-white/80 text-sm">{item.desc}</p>
               </div>
             ))}

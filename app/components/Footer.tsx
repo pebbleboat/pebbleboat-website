@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useScrollToSection } from "../shared";
-import { SvgLinkedIn, SvgTwitter } from "../utils/svgs";
+import { SvgInstagram, SvgLinkedIn, SvgTwitter } from "../utils/svgs";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -42,12 +42,14 @@ export default function Footer() {
     ],
   };
 
-  const renderIcon = (iconType: "linkedin" | "twitter" | "github") => {
+  const renderIcon = (iconType: "linkedin" | "twitter" | "instagram" | "github") => {
     switch (iconType) {
       case "linkedin":
         return <SvgLinkedIn />;
       case "twitter":
         return <SvgTwitter />;
+      case "instagram":
+        return <SvgInstagram />;
       case "github":
         return null; // GitHub icon not used in socialLinks
     }
@@ -64,6 +66,11 @@ export default function Footer() {
       href: "https://x.com/pebbleboat",
       iconType: "twitter" as const,
     },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/pebble_boat",
+      iconType: "instagram" as const,
+    },
   ];
 
   return (
@@ -78,9 +85,9 @@ export default function Footer() {
                 : "opacity-0 -translate-x-8"
             }`}
           >
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent mb-4">
+            <p className="text-2xl font-bold bg-gradient-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent mb-4">
               Pebbleboat
-            </h3>
+            </p>
             <p className="text-white/70 mb-4 max-w-md">
               Transforming ideas into digital reality. We build scalable
               products that drive business growth.
@@ -119,7 +126,7 @@ export default function Footer() {
             }`}
             style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}
           >
-            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <p className="text-white font-semibold mb-4">Company</p>
             <ul className="space-y-2">
               {footerLinks.company.map((link, index) => {
                 const handleCompanyLinkClick = (e: React.MouseEvent) => {
@@ -167,7 +174,7 @@ export default function Footer() {
             }`}
             style={{ transitionDelay: isVisible ? "400ms" : "0ms" }}
           >
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <p className="text-white font-semibold mb-4">Resources</p>
             <ul className="space-y-2">
               {footerLinks.resources.map((link, index) => (
                 <li

@@ -86,7 +86,7 @@ export default function About() {
         <div className="text-center mb-12 lg:mb-16">
           <SectionHeader
             title="Why Choose Us?"
-            subtitle="We're not just developers—we're your partners in building products that make a difference. With a focus on quality, speed, and collaboration, we help startups and businesses succeed."
+            subtitle="We're not just developers—we're your partners in building products that make a difference. We transform your ideas into digital reality and thrive to grow alongside you, with a focus on quality, speed, and collaboration."
             className="mb-8 lg:mb-12"
             subtitleClassName="max-w-3xl"
           />
@@ -94,9 +94,9 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <div className="p-5 lg:p-6 bg-gradient-to-br from-[#84a7b1]/15 to-[#1a1a1a] rounded-2xl border-2 border-[#84a7b1]/30 hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-300">
               <div className="text-4xl mb-3 lg:mb-4">⚡</div>
-              <h3 className="text-lg lg:text-xl font-bold mb-2 text-white">
+              <p className="text-lg lg:text-xl font-bold mb-2 text-white">
                 Fast Delivery
-              </h3>
+              </p>
               <p className="text-white/80 text-sm lg:text-base">
                 We move quickly without compromising quality. Get your MVP in
                 4-6 weeks.
@@ -104,9 +104,9 @@ export default function About() {
             </div>
             <div className="p-5 lg:p-6 bg-gradient-to-br from-[#84a7b1]/15 to-[#1a1a1a] rounded-2xl border-2 border-[#84a7b1]/30 hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-300">
               <div className="text-4xl mb-3 lg:mb-4">🎯</div>
-              <h3 className="text-lg lg:text-xl font-bold mb-2 text-white">
+              <p className="text-lg lg:text-xl font-bold mb-2 text-white">
                 Results-Driven
-              </h3>
+              </p>
               <p className="text-white/80 text-sm lg:text-base">
                 Every project is built with your business goals in mind. We
                 measure success by your success.
@@ -114,9 +114,9 @@ export default function About() {
             </div>
             <div className="p-5 lg:p-6 bg-gradient-to-br from-[#84a7b1]/15 to-[#1a1a1a] rounded-2xl border-2 border-[#84a7b1]/30 hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/20 transition-all duration-300">
               <div className="text-4xl mb-3 lg:mb-4">🤝</div>
-              <h3 className="text-lg lg:text-xl font-bold mb-2 text-white">
+              <p className="text-lg lg:text-xl font-bold mb-2 text-white">
                 Transparent Process
-              </h3>
+              </p>
               <p className="text-white/80 text-sm lg:text-base">
                 Regular updates, clear communication, and no surprises. You're
                 always in the loop.
@@ -213,9 +213,9 @@ export default function About() {
                                   {step.number}
                                 </span>
                               </div>
-                              <h3 className="text-lg md:text-xl lg:text-2xl font-bold mt-1.5 text-white group-hover:text-[#84a7b1] transition-colors">
+                              <p className="text-lg md:text-xl lg:text-2xl font-bold mt-1.5 text-white group-hover:text-[#84a7b1] transition-colors">
                                 {step.title}
-                              </h3>
+                              </p>
                             </div>
                           </div>
 
@@ -336,9 +336,9 @@ export default function About() {
           {/* Bottom CTA */}
           <div className="mt-12 lg:mt-16 text-center">
             <div className="inline-block bg-[#84a7b1] p-6 lg:p-8 rounded-3xl shadow-xl max-w-2xl animate-fade-in-up">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
+              <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
                 Ready to Start Your Project?
-              </h3>
+              </p>
               <p className="text-white/90 mb-5 lg:mb-6 text-base lg:text-lg">
                 Let's discuss how our process can help bring your vision to life
               </p>
