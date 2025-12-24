@@ -8,9 +8,8 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "https://pebbleboat.com"
   ),
   title: {
-    default:
-      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
-    template: "%s | Pebbleboat – We thrive to grow",
+    default: "Pebbleboat – We thrive to grow",
+    template: "%s | Pebbleboat",
   },
   description:
     "Web and mobile app development agency delivering MVPs, full-stack products, and scalable software with fast, design-first execution.",
@@ -49,8 +48,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Pebbleboat",
-    title:
-      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
+    title: "Pebbleboat – We thrive to grow",
     description:
       "Web and mobile app development agency delivering MVPs, full-stack products, and scalable software with fast, design-first execution.",
     images: [
@@ -64,8 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
+    title: "Pebbleboat – We thrive to grow",
     description:
       "Web and mobile app development agency delivering MVPs, full-stack products, and scalable software with fast, design-first execution.",
     images: ["/images/logo.webp"],

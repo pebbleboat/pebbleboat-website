@@ -10,13 +10,11 @@ import Wheel from "./features/wheel";
 import HashScrollHandler from "./components/HashScrollHandler";
 
 export const metadata: Metadata = {
-  title:
-    "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
+  title: "Pebbleboat – We thrive to grow",
   description:
     "Web and mobile app development agency building MVPs, web and mobile apps, and full-stack products with fast delivery and transparent process.",
   openGraph: {
-    title:
-      "Web & Mobile App Development Agency – We thrive to grow | Pebbleboat",
+    title: "Pebbleboat – We thrive to grow",
     description:
       "Web and mobile app development agency building MVPs, web and mobile apps, and full-stack products with fast delivery and transparent process.",
     url: "/",

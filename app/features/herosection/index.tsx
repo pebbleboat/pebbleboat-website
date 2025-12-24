@@ -81,7 +81,7 @@ export default function Hero() {
                 }`}
                 style={{ transitionDelay: mounted ? "400ms" : "0ms" }}
               >
-                Web & Mobile App Development Agency
+                Transform Your Ideas Into
               </span>
               <span
                 className={`bg-linear-to-r from-[#84a7b1] via-white to-[#84a7b1] bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient block transition-all duration-1000 ${
@@ -91,7 +91,7 @@ export default function Hero() {
                 }`}
                 style={{ transitionDelay: mounted ? "600ms" : "0ms" }}
               >
-                Turning Ideas Into Launch-Ready Products
+                Digital Reality
               </span>
             </h1>
 
