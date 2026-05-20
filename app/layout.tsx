@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import WhatsAppWidget from "./shared/WhatsAppWidget";
 import CustomScrollbar from "./shared/CustomScrollbar";
 
@@ -141,6 +142,7 @@ export default function RootLayout({
         {children}
         <WhatsAppWidget />
         <CustomScrollbar />
+        <GoogleAnalytics />
       </body>
     </html>
   );
