@@ -105,22 +105,20 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Pebbleboat",
-    description:
-      "Service-based startup helping businesses build scalable products. MVP development, full-stack web apps, mobile apps, and more.",
     url: baseUrl,
     logo: `${baseUrl}/images/logo.webp`,
-    sameAs: [],
+    description:
+      "Web and mobile app development agency building MVPs, web and mobile apps, and full-stack products.",
     contactPoint: {
       "@type": "ContactPoint",
+      telephone: "+91-7376190196",
+      email: "contact@pebbleboat.com",
       contactType: "Customer Service",
     },
-    areaServed: "Worldwide",
-    serviceType: [
-      "Web Development",
-      "Mobile App Development",
-      "MVP Development",
-      "Full-Stack Development",
-      "Software Development",
+    sameAs: [
+      "https://www.linkedin.com/company/pebbleboat",
+      "https://x.com/pebbleboat",
+      "https://www.instagram.com/pebble_boat",
     ],
   };
 
@@ -133,12 +131,12 @@ export default function RootLayout({
           as="fetch"
           crossOrigin="anonymous"
         />
-      </head>
-      <body className="bg-black text-white antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body className="bg-black text-white antialiased">
         {children}
         <WhatsAppWidget />
         <CustomScrollbar />
