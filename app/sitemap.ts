@@ -1,15 +1,20 @@
 import { MetadataRoute } from "next";
-import { getAllBlogSlugs, getBlogBySlug } from "./utils/data/blogs";
+import {
+  getAllBlogSlugs,
+  getBlogBySlug,
+  getLatestBlogModifiedDate,
+  getPostLastModified,
+} from "./utils/data/blogs";
 import { getAllServiceSlugs } from "./utils/data/services";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Force apex domain even if env accidentally includes www.
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace("//www.", "//") ||
     "https://pebbleboat.com";
-  const lastModified = new Date("2025-01-01");
+  const lastModified = new Date()?.toISOString();
+  const latestBlogModified = getLatestBlogModifiedDate();
 
   const servicePages = getAllServiceSlugs().map((slug) => ({
     url: `${baseUrl}/services/${slug}`,
@@ -22,9 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const post = getBlogBySlug(slug);
     return {
       url: `${baseUrl}/blogs/${slug}`,
-      lastModified: post
-        ? new Date(post.updatedAt || post.publishedAt)
-        : lastModified,
+      lastModified: post ? getPostLastModified(post) : latestBlogModified,
       changeFrequency: "weekly" as const,
       priority: 0.7,
     };
@@ -33,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified,
+      lastModified: latestBlogModified,
       changeFrequency: "monthly",
       priority: 1.0,
     },
@@ -45,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/blogs`,
-      lastModified,
+      lastModified: latestBlogModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },

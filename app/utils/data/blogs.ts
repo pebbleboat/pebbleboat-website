@@ -68,3 +68,17 @@ export function getBlogBySlug(slug: string): BlogPost | null {
 export function getAllBlogSlugs(): string[] {
   return getPosts().map((post) => post.slug);
 }
+
+export function getPostLastModified(post: BlogPost): Date {
+  return new Date(post.updatedAt || post.publishedAt);
+}
+
+export function getLatestBlogModifiedDate(): Date {
+  const posts = getPosts();
+  if (!posts.length) return new Date();
+
+  const latest = Math.max(
+    ...posts.map((post) => getPostLastModified(post).getTime()),
+  );
+  return new Date(latest);
+}
