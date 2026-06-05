@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import QueryProvider from "./providers/QueryProvider";
 import WhatsAppWidget from "./shared/WhatsAppWidget";
 import CustomScrollbar from "./shared/CustomScrollbar";
 
@@ -137,7 +138,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-black text-white antialiased">
-        {children}
+        <QueryProvider>{children}</QueryProvider>
         <WhatsAppWidget />
         <CustomScrollbar />
         <GoogleAnalytics />

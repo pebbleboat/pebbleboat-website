@@ -36,7 +36,7 @@ export default function Footer() {
       { name: "Contact", href: "#contact" },
     ],
     resources: [
-      { name: "Blog", href: "#" },
+      { name: "Blog", href: "/blogs" },
       { name: "Case Studies", href: "#" },
       { name: "FAQ", href: "#" },
     ],

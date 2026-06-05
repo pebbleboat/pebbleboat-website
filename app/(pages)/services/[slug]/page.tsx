@@ -4,7 +4,10 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { GradientBackground, Button } from "../../../shared";
 import Link from "next/link";
-import { getServiceBySlug, getAllServiceSlugs } from "../../../utils/data/services";
+import {
+  getServiceBySlug,
+  getAllServiceSlugs,
+} from "../../../utils/data/services";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -23,9 +26,7 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
 
   if (!service) {
-    return {
-      title: "Service Not Found | Pebbleboat",
-    };
+    notFound();
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pebbleboat.com";
@@ -70,7 +71,9 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
 
           <div className="bg-[#1a1a1a]/80 backdrop-blur-md rounded-2xl p-8 md:p-12 border-2 border-[#2a2a2a] mb-8">
-            <h2 className="text-2xl font-bold mb-6 text-white">What We Offer</h2>
+            <h2 className="text-2xl font-bold mb-6 text-white">
+              What We Offer
+            </h2>
             <ul className="space-y-4">
               {service.features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -99,4 +102,3 @@ export default async function ServicePage({ params }: PageProps) {
     </>
   );
 }
-
