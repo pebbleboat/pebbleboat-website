@@ -32,6 +32,25 @@ export default function Navbar() {
     }
   };
 
+  const handlePageNav = (href: string) => {
+    setIsMobileMenuOpen(false);
+    router.push(href);
+  };
+
+  const navSections = [
+    { id: "services", label: "Services" },
+    { id: "about", label: "About" },
+    { id: "tech", label: "Tech Stack" },
+  ];
+
+  const navLinkClass = (isActive: boolean) =>
+    cn(
+      "transition-all duration-300 font-medium cursor-pointer",
+      isActive
+        ? "text-[#84a7b1]"
+        : "text-white/90 hover:text-[#84a7b1] hover:scale-105",
+    );
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -63,19 +82,16 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {[
-              { id: "services", label: "Services" },
-              { id: "about", label: "About" },
-              { id: "tech", label: "Tech Stack" },
-            ].map((item, index) => (
+            {navSections.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-white/90 hover:text-[#84a7b1] transition-all duration-300 font-medium hover:scale-105 cursor-pointer ${
+                className={cn(
+                  navLinkClass(false),
                   isMounted
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 -translate-y-2"
-                }`}
+                    : "opacity-0 -translate-y-2",
+                )}
                 style={{
                   transitionDelay: isMounted ? `${index * 100 + 200}ms` : "0ms",
                 }}
@@ -83,6 +99,18 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={() => handlePageNav("/blogs")}
+              className={cn(
+                navLinkClass(pathname.startsWith("/blogs")),
+                isMounted
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-2",
+              )}
+              style={{ transitionDelay: isMounted ? "500ms" : "0ms" }}
+            >
+              Blog
+            </button>
             <Button
               onClick={() => handleNavClick("contact")}
               variant="primary"
@@ -94,7 +122,7 @@ export default function Navbar() {
                   : "opacity-0 -translate-y-2"
               )}
               style={{
-                transitionDelay: isMounted ? "500ms" : "0ms",
+                transitionDelay: isMounted ? "600ms" : "0ms",
               }}
             >
               Get Started
@@ -119,19 +147,17 @@ export default function Navbar() {
           }`}
         >
           <div className="pb-4 pt-2 space-y-2 bg-black/98 backdrop-blur-sm border-t border-[#1a1a1a] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-            {[
-              { id: "services", label: "Services" },
-              { id: "about", label: "About" },
-              { id: "tech", label: "Tech Stack" },
-            ].map((item, index) => (
+            {navSections.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left text-white/90 hover:text-[#84a7b1] transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2 cursor-pointer ${
+                className={cn(
+                  "block w-full text-left transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2",
+                  navLinkClass(false),
                   isMobileMenuOpen
                     ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-4"
-                }`}
+                    : "opacity-0 -translate-x-4",
+                )}
                 style={{
                   transitionDelay: isMobileMenuOpen
                     ? `${index * 100}ms`
@@ -141,6 +167,21 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={() => handlePageNav("/blogs")}
+              className={cn(
+                "block w-full text-left transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2",
+                navLinkClass(pathname.startsWith("/blogs")),
+                isMobileMenuOpen
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-4",
+              )}
+              style={{
+                transitionDelay: isMobileMenuOpen ? "300ms" : "0ms",
+              }}
+            >
+              Blog
+            </button>
             <Button
               onClick={() => handleNavClick("contact")}
               variant="primary"
@@ -152,7 +193,7 @@ export default function Navbar() {
                   : "opacity-0 translate-y-4"
               }`}
               style={{
-                transitionDelay: isMobileMenuOpen ? "300ms" : "0ms",
+                transitionDelay: isMobileMenuOpen ? "400ms" : "0ms",
               }}
             >
               Get Started

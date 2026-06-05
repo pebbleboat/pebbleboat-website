@@ -55,6 +55,9 @@ export default function Footer() {
     }
   };
 
+  const footerLinkClass =
+    "text-white/70 hover:text-[#84a7b1] inline-block transition-all duration-300 ease-out hover:translate-x-1.5";
+
   const socialLinks = [
     {
       name: "LinkedIn",
@@ -155,7 +158,7 @@ export default function Footer() {
                   >
                     <button
                       onClick={handleCompanyLinkClick}
-                      className="text-white/70 hover:text-[#84a7b1] transition-colors hover:translate-x-1 inline-block text-left cursor-pointer"
+                      className={`${footerLinkClass} text-left cursor-pointer`}
                     >
                       {link.name}
                     </button>
@@ -192,7 +195,7 @@ export default function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-[#84a7b1] transition-colors hover:translate-x-1 inline-block"
+                    className={footerLinkClass}
                   >
                     {link.name}
                   </Link>
@@ -214,13 +217,13 @@ export default function Footer() {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link
               href="/privacy-policy"
-              className="text-white/70 hover:text-[#84a7b1] text-sm transition-colors hover:scale-105 inline-block"
+              className={`${footerLinkClass} text-sm hover:translate-x-1`}
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
-              className="text-white/70 hover:text-[#84a7b1] text-sm transition-colors hover:scale-105 inline-block"
+              className={`${footerLinkClass} text-sm hover:translate-x-1`}
             >
               Terms of Service
             </Link>
