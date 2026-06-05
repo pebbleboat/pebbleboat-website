@@ -1,9 +1,9 @@
-// app/features/blog/useHook.ts
 import { blogPosts } from "@/app/apis";
+import { BLOG_PAGE_SIZE } from "@/app/utils/data/blogs";
 import { IBlogCard } from "@/app/shared/cards/BlogCard";
 import { convertDate, getBlogCoverImage } from "@/app/utils/functions";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IBlog {
   author: string;
@@ -15,58 +15,40 @@ interface IBlog {
   documentId: string;
 }
 
-const useHook = () => {
-  const [page, setPage] = useState(1);
-  const [blogList, setBlogList] = useState<IBlogCard[]>([]);
-  const [hasMore, setHasMore] = useState(true);
+const mapApiBlogToCard = (item: IBlog): IBlogCard => ({
+  id: item.documentId,
+  author: item.author,
+  createdAt: convertDate(item.publishedAt),
+  title: item.title,
+  subtitle: item.subtitle,
+  image: getBlogCoverImage(item.coverImage?.url),
+  slug: item.slug,
+});
 
-  const { data, isLoading, isFetching } = useQuery({
+const useHook = (initialBlogs: IBlogCard[], initialHasMore: boolean) => {
+  const [page, setPage] = useState(1);
+  const [blogList, setBlogList] = useState<IBlogCard[]>(initialBlogs);
+  const [hasMore, setHasMore] = useState(initialHasMore);
+
+  const { data, isFetching } = useQuery({
     queryKey: ["blogPosts", page],
     queryFn: () => blogPosts(page),
+    enabled: page > 1,
   });
 
-  const blogs: IBlogCard[] = useMemo(() => {
-    // ✅ Add this check - data is undefined until the API call completes
-    if (!data || !Array.isArray(data)) {
-      return [];
-    }
-
-    const mapped = data.map((item: IBlog) => ({
-      id: item.documentId,
-      author: item.author,
-      createdAt: convertDate(item.publishedAt),
-      title: item.title,
-      subtitle: item.subtitle,
-      image: getBlogCoverImage(item.coverImage?.url),
-      slug: item.slug,
-    }));
-
-    return mapped;
-  }, [data]);
-
-  // Reset blog list when page resets to 1
   useEffect(() => {
-    if (page === 1) {
-      setBlogList([]);
-      setHasMore(true);
-    }
-  }, [page]);
+    if (page === 1 || !data || !Array.isArray(data)) return;
 
-  // Add new blogs to the list with deduplication
-  useEffect(() => {
-    if (!data || !Array.isArray(data)) return;
+    const mapped = data.map((item: IBlog) => mapApiBlogToCard(item));
 
-    if (blogs.length > 0) {
-      setBlogList((prev) => {
-        const existingIds = new Set(prev.map((blog) => blog.id));
-        const newBlogs = blogs.filter((blog) => !existingIds.has(blog.id));
+    setBlogList((prev) => {
+      const existingIds = new Set(prev.map((blog) => blog.id));
+      const newBlogs = mapped.filter((blog) => !existingIds.has(blog.id));
+      return [...prev, ...newBlogs];
+    });
 
-        return [...prev, ...newBlogs];
-      });
-    }
-
-    setHasMore(data.length >= 9);
-  }, [blogs, data]);
+    setHasMore(data.length >= BLOG_PAGE_SIZE);
+  }, [data, page]);
 
   const loadMore = () => {
     if (hasMore && !isFetching) {
@@ -76,11 +58,7 @@ const useHook = () => {
 
   return {
     blogs: blogList,
-    isLoading: isLoading && page === 1,
     isFetchingMore: isFetching && page > 1,
-    total: data?.length,
-    page,
-    setPage,
     hasMore,
     loadMore,
   };

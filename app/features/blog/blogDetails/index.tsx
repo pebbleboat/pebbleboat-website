@@ -9,8 +9,8 @@ import {
   headingsToSlug,
 } from "@/app/utils/functions";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import type { IBlogCard } from "@/app/shared/cards/BlogCard";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { FaRegCalendar } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -18,7 +18,6 @@ import { PiLinkedinLogo } from "react-icons/pi";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useScrollToSection } from "@/app/shared";
-import useBlogs from "../useHook";
 import useHook from "./useHook";
 
 const sidebarPanel =
@@ -37,7 +36,15 @@ const getTextFromChildren = (children: React.ReactNode): string => {
   return "";
 };
 
-const BlogDetails = ({ data, id }: { data: any; id: string }) => {
+const BlogDetails = ({
+  data,
+  id,
+  recentBlogs = [],
+}: {
+  data: any;
+  id: string;
+  recentBlogs?: IBlogCard[];
+}) => {
   const { blogDetails, activeSlug } = useHook(data);
   const scrollToSection = useScrollToSection();
   const headings = extractSectionHeadings(blogDetails?.description);
@@ -69,10 +76,6 @@ const BlogDetails = ({ data, id }: { data: any; id: string }) => {
       path: shareUrls.twitter,
     },
   ];
-  const { blogs } = useBlogs();
-  const recentBlogs = blogs.filter((r) => r.slug !== id).slice(0, 4);
-  const router = useRouter();
-
   return (
     <div className="space-y-8">
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight bg-gradient-to-r from-white via-[#84a7b1] to-white bg-clip-text text-transparent">
@@ -157,9 +160,9 @@ const BlogDetails = ({ data, id }: { data: any; id: string }) => {
                 <p className="font-semibold text-white text-sm">Recent Posts</p>
                 <div className="space-y-3">
                   {recentBlogs.map((item, idx) => (
-                    <Fragment key={idx}>
-                      <div
-                        onClick={() => router.push(`/blogs/${item.slug}`)}
+                    <Fragment key={item.id}>
+                      <Link
+                        href={`/blogs/${item.slug}`}
                         className="flex gap-3 cursor-pointer group"
                       >
                         <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0">
@@ -168,7 +171,7 @@ const BlogDetails = ({ data, id }: { data: any; id: string }) => {
                         <p className="text-[13px] font-medium text-white/80 group-hover:text-[#84a7b1] transition-colors line-clamp-2 leading-snug">
                           {item.title}
                         </p>
-                      </div>
+                      </Link>
                       {idx < recentBlogs.length - 1 && (
                         <div className="h-px bg-[#2a2a2a]" />
                       )}

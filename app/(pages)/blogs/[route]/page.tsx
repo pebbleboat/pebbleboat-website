@@ -2,7 +2,7 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import BlogDetails from "@/app/features/blog/blogDetails";
 import { GradientBackground } from "@/app/shared";
-import { getBlogBySlug } from "@/app/utils/data/blogs";
+import { getBlogBySlug, getRecentBlogCards } from "@/app/utils/data/blogs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -72,7 +72,11 @@ const BlogDetailPage = async ({ params }: PageProps) => {
           <GradientBackground variant="services" />
         </div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-          <BlogDetails id={route} data={data} />
+          <BlogDetails
+            id={route}
+            data={data}
+            recentBlogs={getRecentBlogCards(route)}
+          />
         </div>
       </section>
       <Footer />

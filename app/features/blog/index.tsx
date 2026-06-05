@@ -1,23 +1,18 @@
 // app/features/blog/index.tsx
 "use client";
+
 import Img from "@/app/shared/Img";
 import { Button, SectionHeader } from "@/app/shared";
-import { useRouter } from "next/navigation";
-import useHook from "./useHook";
 import { IBlogCard } from "@/app/shared/cards/BlogCard";
+import Link from "next/link";
+import useHook from "./useHook";
 
 const cardBase =
   "group cursor-pointer rounded-2xl border-2 border-[#2a2a2a] bg-[#1a1a1a]/80 backdrop-blur-md transition-all duration-300 hover:border-[#84a7b1] hover:shadow-lg hover:shadow-[#84a7b1]/10";
 
-const FeaturedCard = ({
-  data,
-  onClick,
-}: {
-  data: IBlogCard;
-  onClick: () => void;
-}) => (
-  <div
-    onClick={onClick}
+const FeaturedCard = ({ data }: { data: IBlogCard }) => (
+  <Link
+    href={`/blogs/${data.slug}`}
     className={`${cardBase} grid md:grid-cols-2 gap-8 items-center p-6`}
   >
     <div className="overflow-hidden rounded-xl aspect-video bg-[#0a0a0a]">
@@ -48,17 +43,14 @@ const FeaturedCard = ({
         </span>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
-const PostCard = ({
-  data,
-  onClick,
-}: {
-  data: IBlogCard;
-  onClick: () => void;
-}) => (
-  <div onClick={onClick} className={`${cardBase} flex flex-col overflow-hidden`}>
+const PostCard = ({ data }: { data: IBlogCard }) => (
+  <Link
+    href={`/blogs/${data.slug}`}
+    className={`${cardBase} flex flex-col overflow-hidden`}
+  >
     <div className="overflow-hidden aspect-video bg-[#0a0a0a]">
       <Img
         src={data.image}
@@ -91,6 +83,7 @@ const PostCard = ({
           viewBox="0 0 24 24"
           fill="none"
           className="group-hover:translate-x-0.5 transition-transform"
+          aria-hidden
         >
           <path
             d="M5 12h14M13 6l6 6-6 6"
@@ -102,20 +95,28 @@ const PostCard = ({
         </svg>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
-const Blogs = () => {
-  const { blogs, isFetchingMore, hasMore, loadMore } = useHook();
-  const router = useRouter();
+type BlogsProps = {
+  initialBlogs: IBlogCard[];
+  initialHasMore: boolean;
+};
 
-  if (!blogs.length)
+const Blogs = ({ initialBlogs, initialHasMore }: BlogsProps) => {
+  const { blogs, isFetchingMore, hasMore, loadMore } = useHook(
+    initialBlogs,
+    initialHasMore,
+  );
+
+  if (!blogs.length) {
     return (
       <div className="h-[400px] flex flex-col justify-center items-center space-y-3">
         <h2 className="font-bold text-xl text-white">No Posts Found</h2>
         <p className="text-white/60 text-sm">Check back soon for new content</p>
       </div>
     );
+  }
 
   const [featured, ...rest] = blogs;
 
@@ -126,21 +127,12 @@ const Blogs = () => {
         subtitle="Software development, delivery velocity, and building products the right way."
       />
 
-      {featured && (
-        <FeaturedCard
-          data={featured}
-          onClick={() => router.push(`/blogs/${featured.slug}`)}
-        />
-      )}
+      {featured && <FeaturedCard data={featured} />}
 
       {rest.length > 0 && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {rest.map((item, idx) => (
-            <PostCard
-              key={item.id || idx}
-              data={item}
-              onClick={() => router.push(`/blogs/${item.slug}`)}
-            />
+          {rest.map((item) => (
+            <PostCard key={item.id} data={item} />
           ))}
         </div>
       )}
