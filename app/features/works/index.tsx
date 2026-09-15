@@ -30,7 +30,7 @@ const Works: React.FC<WorksProps> = ({ initialProjects = defaultProjects }) => {
     <div className="space-y-12">
       {/* Header */}
       <SectionHeader
-        title="Our Works"
+        title="Our Work"
         subtitle="Explore our portfolio of high-impact web apps, mobile solutions, and cutting-edge digital experiences built for ambitious brands."
       />
 

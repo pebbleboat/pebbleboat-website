@@ -36,7 +36,7 @@ export default function Footer() {
       { name: "Contact", href: "#contact" },
     ],
     resources: [
-      { name: "Our Works", href: "/our-works" },
+      { name: "Our Work", href: "/our-work" },
       { name: "Blog", href: "/blogs" },
       { name: "FAQ", href: "#" },
     ],

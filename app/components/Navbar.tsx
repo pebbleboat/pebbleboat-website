@@ -39,6 +39,7 @@ export default function Navbar() {
 
   const navSections = [
     { id: "services", label: "Services" },
+    { id: "projects", label: "Our Work" },
     { id: "about", label: "About" },
     { id: "tech", label: "Tech Stack" },
   ];
@@ -100,18 +101,6 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={() => handlePageNav("/our-works")}
-              className={cn(
-                navLinkClass(pathname.startsWith("/our-works") || pathname.startsWith("/works")),
-                isMounted
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-2",
-              )}
-              style={{ transitionDelay: isMounted ? "500ms" : "0ms" }}
-            >
-              Our Works
-            </button>
-            <button
               onClick={() => handlePageNav("/blogs")}
               className={cn(
                 navLinkClass(pathname.startsWith("/blogs")),
@@ -119,7 +108,7 @@ export default function Navbar() {
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-2",
               )}
-              style={{ transitionDelay: isMounted ? "550ms" : "0ms" }}
+              style={{ transitionDelay: isMounted ? "600ms" : "0ms" }}
             >
               Blog
             </button>
@@ -131,10 +120,10 @@ export default function Navbar() {
                 "py-2 px-4",
                 isMounted
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-2"
+                  : "opacity-0 -translate-y-2",
               )}
               style={{
-                transitionDelay: isMounted ? "600ms" : "0ms",
+                transitionDelay: isMounted ? "700ms" : "0ms",
               }}
             >
               Get Started
@@ -180,21 +169,6 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={() => handlePageNav("/our-works")}
-              className={cn(
-                "block w-full text-left transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2",
-                navLinkClass(pathname.startsWith("/our-works") || pathname.startsWith("/works")),
-                isMobileMenuOpen
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-4",
-              )}
-              style={{
-                transitionDelay: isMobileMenuOpen ? "300ms" : "0ms",
-              }}
-            >
-              Our Works
-            </button>
-            <button
               onClick={() => handlePageNav("/blogs")}
               className={cn(
                 "block w-full text-left transition-all duration-300 py-2.5 px-2 rounded-lg hover:bg-[#1a1a1a] font-medium hover:translate-x-2",
@@ -204,7 +178,7 @@ export default function Navbar() {
                   : "opacity-0 -translate-x-4",
               )}
               style={{
-                transitionDelay: isMobileMenuOpen ? "350ms" : "0ms",
+                transitionDelay: isMobileMenuOpen ? "400ms" : "0ms",
               }}
             >
               Blog

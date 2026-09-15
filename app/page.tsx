@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Services from "./features/services/Services";
 import TechStack from "./features/techStack";
 import Wheel from "./features/wheel";
+import HomeWorksSection from "./features/works/HomeWorksSection";
 import HashScrollHandler from "./components/HashScrollHandler";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function Home() {
       <HashScrollHandler />
       <Hero />
       <Services />
+      <HomeWorksSection />
       <About />
       <TechStack />
       <Wheel />
